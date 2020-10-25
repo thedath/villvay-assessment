@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Villvay Assessment",
+    "slug": "villvay-assessment",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/villvay.png",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+  }
+}
