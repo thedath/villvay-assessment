@@ -17,6 +17,7 @@ const CategorySelector = ({ visible, onDismiss }) => {
             {CATEGORY_LIST.map((category, index) => (
               <List.Item
                 key={`category-${index}`}
+                style={styles.listItem}
                 title={category}
                 onPress={() => {
                   onDismiss(category);
@@ -42,6 +43,10 @@ const CategorySelector = ({ visible, onDismiss }) => {
 
 const styles = StyleSheet.create({
   contentWrapper: {},
+  listItem: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: "grey",
+  }
 });
 
 export default CategorySelector;

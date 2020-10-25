@@ -2,7 +2,7 @@
 import "react-native-gesture-handler";
 
 // importing react base
-import * as React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -17,12 +17,7 @@ import ItemDetailScreen from "./screens/ItemDetailScreen";
 // ui based imports
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-
-// import redux related components
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import ReduxThunk from "redux-thunk";
-import reducers from "./redux/reducers";
+import useClassified from "./redux/hooks/useClassified";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,28 +62,24 @@ const InitialScreen = () => (
 );
 
 const Main = () => {
+  const { loadClassifiedsFromStorage } = useClassified();
+  useEffect(() => {
+    loadClassifiedsFromStorage();
+  }, []);
   return (
-    // <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="InitialScreen" headerMode="none">
-            <Stack.Screen name="InitialScreen" component={InitialScreen} />
-            <Stack.Screen
-              name="CreateItemScreen"
-              component={CreateItemScreen}
-            />
-            <Stack.Screen
-              name="CategoryListScreen"
-              component={CategoryListScreen}
-            />
-            <Stack.Screen
-              name="ItemDetailScreen"
-              component={ItemDetailScreen}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
-    // </Provider>
+    <PaperProvider theme={theme}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="InitialScreen" headerMode="none">
+          <Stack.Screen name="InitialScreen" component={InitialScreen} />
+          <Stack.Screen name="CreateItemScreen" component={CreateItemScreen} />
+          <Stack.Screen
+            name="CategoryListScreen"
+            component={CategoryListScreen}
+          />
+          <Stack.Screen name="ItemDetailScreen" component={ItemDetailScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 
