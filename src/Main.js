@@ -11,7 +11,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ExploreTabScreen from "./screens/ExploreTabScreen";
 import BookmarksTabScreen from "./screens/BookmarksTabScreen";
 import CreateItemScreen from "./screens/CreateItemScreen";
-import CategoryListScreen from "./screens/CategoryListScreen";
+import CategoryResultScreen from "./screens/CategoryResultScreen";
 import ItemDetailScreen from "./screens/ItemDetailScreen";
 
 // ui based imports
@@ -73,8 +73,8 @@ const Main = () => {
           <Stack.Screen name="InitialScreen" component={InitialScreen} />
           <Stack.Screen name="CreateItemScreen" component={CreateItemScreen} />
           <Stack.Screen
-            name="CategoryListScreen"
-            component={CategoryListScreen}
+            name="CategoryResultScreen"
+            component={CategoryResultScreen}
           />
           <Stack.Screen name="ItemDetailScreen" component={ItemDetailScreen} />
         </Stack.Navigator>

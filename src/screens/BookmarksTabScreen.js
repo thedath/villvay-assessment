@@ -1,15 +1,42 @@
 import React from "react";
-import { Text } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
+
 import Container from "../components/Container";
-import MainHeader from "../components/MainHeader";
+import ClassifiedListItem from "../components/ClassifiedListItem";
+import useClassified from "../redux/hooks/useClassified";
+import { Appbar, ProgressBar } from "react-native-paper";
 
 const BookmarksTabScreen = () => {
+  const { classifiedList, classifiedProcessing } = useClassified();
+
+  const filterBookmarkedClassifieds = () =>
+    classifiedList.filter((classified) => classified.bookmarked);
+
+  const renderClassifiedList = ({ item }) => {
+    return <ClassifiedListItem classified={item} />;
+  };
+
   return (
     <Container>
-      <MainHeader title="Bookmarks" />
-      <Text>BookmarksTabScreen</Text>
+      <Appbar.Header>
+        <Appbar.Content title="Bookmarks" />
+      </Appbar.Header>
+      <ProgressBar indeterminate={true} visible={classifiedProcessing} />
+      <FlatList
+        style={styles.classifiedList}
+        data={filterBookmarkedClassifieds()}
+        keyExtractor={(classified) => `list-item-${classified.time}`}
+        renderItem={renderClassifiedList}
+        showsVerticalScrollIndicator={false}
+      />
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  classifiedList: {
+    padding: 5,
+  },
+});
 
 export default BookmarksTabScreen;

@@ -1,6 +1,8 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { Button, Dialog, List, Portal, } from "react-native-paper";
+import * as PropTypes from "prop-types";
+
 import { CATEGORY_LIST } from "../constant";
 
 const CategorySelector = ({ visible, onDismiss }) => {
@@ -48,5 +50,10 @@ const styles = StyleSheet.create({
     borderBottomColor: "grey",
   }
 });
+
+CategorySelector.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onDismiss: PropTypes.func.isRequired,
+}
 
 export default CategorySelector;

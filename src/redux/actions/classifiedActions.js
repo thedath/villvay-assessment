@@ -25,8 +25,61 @@ export const saveClassified = (
           description,
           category,
           imageURI,
+          bookmarked: false,
           time: (new Date()).getTime(),
         });
+        await AsyncStorage.setItem(
+          "classifiedsJSON",
+          JSON.stringify(classifieds)
+        )
+          .then(() => {
+            dispatch({
+              type: CLASSIFIED_SET_LIST,
+              payload: classifieds,
+            });
+          })
+          .catch((error) => {
+            dispatch({
+              type: CLASSIFIED_SET_ERROR,
+              payload: error,
+            });
+          });
+      })
+      .catch((error) => {
+        dispatch({
+          type: CLASSIFIED_SET_ERROR,
+          payload: error,
+        });
+      });
+  } catch (error) {
+    dispatch({
+      type: CLASSIFIED_SET_ERROR,
+      payload: "Classified saving failed",
+    });
+  }
+};
+
+export const changeBookmarkStatus = (
+  classifiedTime
+) => async (dispatch) => {
+  dispatch({ type: CLASSIFIED_SET_PROCESSING });
+  try {
+    await AsyncStorage.getItem("classifiedsJSON")
+      .then(async (storedClassifiedsJSON) => {
+        let storedClassifieds = JSON.parse(storedClassifiedsJSON);
+        let classifieds = [];
+        if (Array.isArray(storedClassifieds)) {
+          classifieds = storedClassifieds;
+        }
+        let position;
+        const classified = classifieds.find((classfied, index) => {
+          position = index;
+          return classfied.time === classifiedTime;
+        });
+        if (classified) {
+          classified.bookmarked = !classified.bookmarked;
+          classifieds[position] = classified;
+        }
         await AsyncStorage.setItem(
           "classifiedsJSON",
           JSON.stringify(classifieds)

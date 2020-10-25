@@ -41,6 +41,20 @@ const useClassified = () => {
     [dispatch]
   );
 
+  /**
+   * Invert the existing bookmarked status of the
+   * classified found by unique 'time' value
+   * 
+   */
+  const changeBookmarkStatus = useCallback(
+    async (classifiedTime) => {
+      return await dispatch(
+        ClassifiedActions.changeBookmarkStatus(classifiedTime)
+      );
+    },
+    [dispatch]
+  );
+
   // returning states of classified and async operations
   return {
     classifiedList: list,
@@ -48,6 +62,7 @@ const useClassified = () => {
     classifiedProcessing: processing,
     saveClassified,
     loadClassifiedsFromStorage,
+    changeBookmarkStatus,
   };
 };
 

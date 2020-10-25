@@ -169,7 +169,7 @@ const CreateIconScreen = () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
-        aspect: [4, 3],
+        aspect: [1, 1],
         quality: 1,
       });
       // sets the newly selected image's uri
@@ -277,7 +277,7 @@ const CreateIconScreen = () => {
         <View style={styles.imageContainer}>
           <TouchableOpacity onPress={onImageChange}>
             <Image
-              style={{ ...styles.image, width: width - 20, height: ((width - 20) / 4) * 3 }}
+              style={{ ...styles.image, width: (width/3) * 2, height: (width/3) * 2 }}
               source={{ uri: image }}
             />
           </TouchableOpacity>
@@ -328,6 +328,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginBottom: 20,
+    alignItems: "center"
   }
 });
 
