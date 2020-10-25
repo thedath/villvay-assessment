@@ -22,8 +22,8 @@ const ExploreTabScreen = ({ navigation }) => {
     }
   };
 
-  const renderClassifiedList = ({ item }) => {
-    return <ClassifiedListItem classified={item} />;
+  const renderClassifiedList = ({ item, index }) => {
+    return <ClassifiedListItem classified={item} isLastItem={index === classifiedList.length - 1} />;
   };
 
   return (
@@ -61,6 +61,7 @@ const ExploreTabScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   classifiedList: {
+    flex: 1,
     padding: 5,
   },
 });
