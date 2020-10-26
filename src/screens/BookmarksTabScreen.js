@@ -12,8 +12,8 @@ const BookmarksTabScreen = () => {
   const filterBookmarkedClassifieds = () =>
     classifiedList.filter((classified) => classified.bookmarked);
 
-  const renderClassifiedList = ({ item }) => {
-    return <ClassifiedListItem classified={item} />;
+  const renderClassifiedList = ({ item, index }) => {
+    return <ClassifiedListItem classified={item} isLastItem={index === classifiedList.length - 1} />;
   };
 
   return (

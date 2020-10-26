@@ -12,7 +12,11 @@ import { useNavigation } from "@react-navigation/native";
 import useClassified from "../redux/hooks/useClassified";
 import * as PropTypes from "prop-types";
 
-const ClassifiedListItem = ({ classified }) => {
+const ClassifiedListItem = ({ classified, isLastItem }) => {
+  let marginBottom = 5;
+  if (isLastItem) {
+    marginBottom = 20;
+  }
   const {
     changeBookmarkStatus,
   } = useClassified();
@@ -35,7 +39,7 @@ const ClassifiedListItem = ({ classified }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onItemPressed}>
+    <TouchableOpacity style={{...styles.container, marginBottom }} onPress={onItemPressed}>
       <View style={styles.textItemContainer}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">{classified.title}</Text>
         <Text style={styles.category}>{classified.category}</Text>

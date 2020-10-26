@@ -18,8 +18,8 @@ const CategoryResultScreen = ({ route }) => {
   const filterClassifiedsByCategory = () =>
     classifiedList.filter((classified) => classified.category === category);
 
-  const renderClassifiedList = ({ item }) => {
-    return <ClassifiedListItem classified={item} />;
+  const renderClassifiedList = ({ item, index }) => {
+    return <ClassifiedListItem classified={item} isLastItem={index === classifiedList.length - 1} />;
   };
 
   return (
