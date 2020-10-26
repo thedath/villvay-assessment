@@ -21,7 +21,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
 
   const getBookmarkIconProps = () =>
     classified.bookmarked
-      ? { name: "bookmark", color: "red" }
+      ? { name: "bookmark", color: "#ff6e6e" }
       : { name: "bookmark", color: "white" };
 
   const onBookmarkPressed = () => {
@@ -62,7 +62,7 @@ const ItemDetailScreen = ({ navigation, route }) => {
           style={{ width, height: (width / 4) * 3 }}
           source={{ uri: classified.imageURI }}
         />
-        <ProgressBar indeterminate={true} visible={classifiedProcessing} />
+        <ProgressBar indeterminate={true} visible={classifiedProcessing} color="#ff6e6e" />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.category}>{classified.category}</Text>

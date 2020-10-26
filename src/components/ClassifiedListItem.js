@@ -25,7 +25,7 @@ const ClassifiedListItem = ({ classified, isLastItem }) => {
 
   const getBookmarkIconProps = () =>
     classified.bookmarked
-      ? { name: "bookmark", color: "red" }
+      ? { name: "bookmark", color: "#ff6e6e" }
       : { name: "bookmark", color: "white" };
 
   const onItemPressed = () => {
@@ -108,7 +108,8 @@ ClassifiedListItem.propTypes = {
     imageURI: PropTypes.string.isRequired,
     bookmarked: PropTypes.bool.isRequired,
     time: PropTypes.number.isRequired,
-  })
+  }),
+  isLastItem: PropTypes.bool.isRequired,
 };
 
 export default ClassifiedListItem;

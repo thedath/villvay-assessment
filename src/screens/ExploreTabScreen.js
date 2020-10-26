@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, FlatList } from "react-native";
 import { Appbar, ProgressBar } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
 import * as PropTypes from "prop-types";
 
-import ClassifiedListItem from "../components/ClassifiedListItem";
+import ClassifiedList from "../components/ClassifiedList";
 import Container from "../components/Container";
 import useClassified from "../redux/hooks/useClassified";
 import CategorySelector from "../components/CategorySelector";
@@ -20,10 +19,6 @@ const ExploreTabScreen = ({ navigation }) => {
         category,
       });
     }
-  };
-
-  const renderClassifiedList = ({ item, index }) => {
-    return <ClassifiedListItem classified={item} isLastItem={index === classifiedList.length - 1} />;
   };
 
   return (
@@ -43,14 +38,8 @@ const ExploreTabScreen = ({ navigation }) => {
           onPress={() => setCategorSelectorVisible(true)}
         />
       </Appbar.Header>
-      <ProgressBar indeterminate={true} visible={classifiedProcessing} />
-      <FlatList
-        style={styles.classifiedList}
-        data={classifiedList}
-        keyExtractor={(classified) => `list-item-${classified.time}`}
-        renderItem={renderClassifiedList}
-        showsVerticalScrollIndicator={false}
-      />
+      <ProgressBar indeterminate={true} visible={classifiedProcessing} color="#ff6e6e" />
+      <ClassifiedList classifiedList={classifiedList} />
       <CategorySelector
         visible={categorySelectorVisible}
         onDismiss={hideCategorySelector}
@@ -58,13 +47,6 @@ const ExploreTabScreen = ({ navigation }) => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  classifiedList: {
-    flex: 1,
-    padding: 5,
-  },
-});
 
 ExploreTabScreen.propTypes = {
   navigation: PropTypes.shape({

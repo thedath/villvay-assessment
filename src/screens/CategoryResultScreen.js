@@ -1,13 +1,12 @@
 import React from "react";
 import { Appbar, ProgressBar } from "react-native-paper";
-import { StyleSheet, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import * as PropTypes from "prop-types";
 
 import Container from "../components/Container";
 import useClassified from "../redux/hooks/useClassified";
-import ClassifiedListItem from "../components/ClassifiedListItem";
+import ClassifiedList from "../components/ClassifiedList";
 
 const CategoryResultScreen = ({ route }) => {
   const { category } = route.params;
@@ -17,10 +16,6 @@ const CategoryResultScreen = ({ route }) => {
 
   const filterClassifiedsByCategory = () =>
     classifiedList.filter((classified) => classified.category === category);
-
-  const renderClassifiedList = ({ item, index }) => {
-    return <ClassifiedListItem classified={item} isLastItem={index === classifiedList.length - 1} />;
-  };
 
   return (
     <Container>
@@ -36,23 +31,11 @@ const CategoryResultScreen = ({ route }) => {
         />
         <Appbar.Content title={category} />
       </Appbar.Header>
-      <ProgressBar indeterminate={true} visible={classifiedProcessing} />
-      <FlatList
-        style={styles.classifiedList}
-        data={filterClassifiedsByCategory()}
-        keyExtractor={(classified) => `list-item-${classified.time}`}
-        renderItem={renderClassifiedList}
-        showsVerticalScrollIndicator={false}
-      />
+      <ProgressBar indeterminate={true} visible={classifiedProcessing} color="#ff6e6e" />
+      <ClassifiedList classifiedList={filterClassifiedsByCategory()} />
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  classifiedList: {
-    padding: 5,
-  },
-});
 
 CategoryResultScreen.propTypes = {
   route: PropTypes.shape({

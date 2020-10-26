@@ -227,7 +227,7 @@ const CreateIconScreen = () => {
           onPress={onSavePressed}
         />
       </Appbar.Header>
-      <ProgressBar indeterminate={true} visible={classifiedProcessing} />
+      <ProgressBar indeterminate={true} visible={classifiedProcessing} color="#ff6e6e" />
       <ScrollView
         style={styles.rootContainer}
         horizontal={false}
