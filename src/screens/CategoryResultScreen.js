@@ -9,11 +9,15 @@ import useClassified from "../redux/hooks/useClassified";
 import ClassifiedList from "../components/ClassifiedList";
 
 const CategoryResultScreen = ({ route }) => {
+  // using the classified hook to listen for the
+  // classified list state so that whenever item being
+  // changed, list gets changed accordingly
+  const { classifiedList, classifiedProcessing } = useClassified();
+  // fetching the category user selected on 
+  // category selection dialog screen
   const { category } = route.params;
   const navigation = useNavigation();
-  const { classifiedList, classifiedProcessing } = useClassified();
-
-
+  // filter classified list by user selected category
   const filterClassifiedsByCategory = () =>
     classifiedList.filter((classified) => classified.category === category);
 

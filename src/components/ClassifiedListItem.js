@@ -9,31 +9,43 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import useClassified from "../redux/hooks/useClassified";
 import * as PropTypes from "prop-types";
 
+import useClassified from "../redux/hooks/useClassified";
+
 const ClassifiedListItem = ({ classified, isLastItem }) => {
+  // ditermines the bottom margin of this
+  // classified list item because last item
+  // of the list must have a extra margin to
+  // stop being overlapping with bottom navigation
   let marginBottom = 5;
   if (isLastItem) {
     marginBottom = 20;
   }
+  // using a callback function of the classified hook
+  // to change the bookmark status of the classified 
   const {
     changeBookmarkStatus,
   } = useClassified();
   const navigation = useNavigation();
+  // getting the width of the device for styling
   const { width } = useWindowDimensions();
-
+  // callback function to be called on every rendering
+  // to get the right color on bookmark icon
+  // according to the changed status
   const getBookmarkIconProps = () =>
     classified.bookmarked
       ? { name: "bookmark", color: "#ff6e6e" }
       : { name: "bookmark", color: "white" };
-
+  // navigating to bookmark detail screen
   const onItemPressed = () => {
     navigation.navigate("ItemDetailScreen", {
       classified
     });
   }
-
+  // callback function to be called when clicked on the 
+  // bookmark icon. this will call the hook fucntion
+  // to change the bookmarked status of the classified
   const onBookmarkPressed = () => {
     changeBookmarkStatus(classified.time);
   }

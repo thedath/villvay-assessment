@@ -1,3 +1,4 @@
+// pre defined classified categories
 export const CATEGORY_LIST = [
   "Community", 
   "Proffesional",

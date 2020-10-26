@@ -5,6 +5,7 @@ import * as PropTypes from "prop-types";
 
 import { CATEGORY_LIST } from "../constant";
 
+// pop up dialog for selecting one classified category
 const CategorySelector = ({ visible, onDismiss }) => {
   return (
     <Portal>

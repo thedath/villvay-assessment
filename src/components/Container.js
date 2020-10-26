@@ -2,9 +2,11 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { PropTypes } from "prop-types";
 
-const Container = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
-};
+// reusable wrapper component to act as the root
+// component of a screen
+const Container = ({ children }) => (
+  <View style={styles.container}>{children}</View>
+);
 
 const styles = StyleSheet.create({
   container: {

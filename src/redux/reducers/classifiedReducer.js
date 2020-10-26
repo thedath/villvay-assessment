@@ -5,6 +5,13 @@ import {
   CLASSIFIED_RESET_STATE,
 } from "../actions/classifiedActions";
 
+// initial state of the reducer
+// list to hold all the classified list from 
+// local storage, errorMessage to store any
+// AsynStorage errors or exception messages and,
+// processign for letting UIs know that some
+// time consuming iperation is goin on so that
+// UIs can show a progress bar in such cases
 const initialState = {
   list: [],
   errorMessage: "",

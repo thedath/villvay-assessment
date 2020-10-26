@@ -6,8 +6,12 @@ import ClassifiedList from "../components/ClassifiedList";
 import useClassified from "../redux/hooks/useClassified";
 
 const BookmarksTabScreen = () => {
+  // using the classified hook to listen for the
+  // classified list state so that whenever item being
+  // changed, list gets changed accordingly
   const { classifiedList, classifiedProcessing } = useClassified();
 
+  // filtering the classified list by bookmarked status
   const filterBookmarkedClassifieds = () =>
     classifiedList.filter((classified) => classified.bookmarked);
 

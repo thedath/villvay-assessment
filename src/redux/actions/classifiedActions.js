@@ -5,6 +5,9 @@ export const CLASSIFIED_SET_ERROR = "classified-error";
 export const CLASSIFIED_SET_PROCESSING = "classified-progress";
 export const CLASSIFIED_RESET_STATE = "classified-reset";
 
+// saving a classified in local storage first
+// then it gets saved in realtime memory only
+// if above task gets succeeded
 export const saveClassified = (
   title,
   description,
@@ -59,6 +62,10 @@ export const saveClassified = (
   }
 };
 
+// reverting the current status of the classified
+// found by the unique timestamp of the classified
+// then it gets saved in realtime memory only
+// if above task gets succeeded
 export const changeBookmarkStatus = (
   classifiedTime
 ) => async (dispatch) => {
@@ -111,6 +118,7 @@ export const changeBookmarkStatus = (
   }
 };
 
+// loads all the classifieds being saved in the local storage to memory
 export const loadClassifiedsFromStorage = () => async (dispatch) => {
   dispatch({ type: CLASSIFIED_SET_PROCESSING });
   try {

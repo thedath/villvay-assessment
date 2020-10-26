@@ -9,12 +9,22 @@ import useClassified from "../redux/hooks/useClassified";
 import CategorySelector from "../components/CategorySelector";
 
 const ExploreTabScreen = ({ navigation }) => {
+  // using the classified hook to listen for the
+  // classified list state so that whenever item being
+  // changed, list gets changed accordingly
   const { classifiedList, classifiedProcessing } = useClassified();
 
+  // state for notifying whether category selector should
+  // be visible or not
   const [categorySelectorVisible, setCategorSelectorVisible] = useState(false);
+  
+  // callback function to be called when category selection dialog being dismissed
   const hideCategorySelector = (category) => {
+    // hiding category selection dialog
     setCategorSelectorVisible(false);
     if (category) {
+      // navigating to category result screen
+      // only if category is being selected by the user
       navigation.navigate("CategoryResultScreen", {
         category,
       });

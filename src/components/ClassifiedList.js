@@ -4,16 +4,18 @@ import { StyleSheet, FlatList } from "react-native";
 
 import ClassifiedListItem from "../components/ClassifiedListItem";
 
+// reusable component for displaying a given list of
+// classifieds
 const ClassifiedList = ({ classifiedList }) => {
-  
-  const renderClassifiedList = ({ item, index }) => {
-    return (
-      <ClassifiedListItem
-        classified={item}
-        isLastItem={index === classifiedList.length - 1}
-      />
-    );
-  };
+  // callback function to be called when rendering
+  // each of the classified object in the classified
+  // list of data
+  const renderClassifiedList = ({ item, index }) => (
+    <ClassifiedListItem
+      classified={item}
+      isLastItem={index === classifiedList.length - 1}
+    />
+  );
 
   return (
     <FlatList

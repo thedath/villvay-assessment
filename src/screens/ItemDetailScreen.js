@@ -75,9 +75,6 @@ const ItemDetailScreen = ({ navigation, route }) => {
       >
         <Text style={styles.description}>
           {classified.description}
-          {classified.description}
-          {classified.description}
-          {classified.description}
         </Text>
       </ScrollView>
     </Container>
